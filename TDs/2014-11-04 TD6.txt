@@ -1,0 +1,59 @@
+/***************
+*Classe interne*
+****************/
+class SuiteArithm implements SuiteEntiere {
+	int premier, raison;
+	
+	SuiteArithm(int premier, int raison){
+		this.premier = premier;
+		this.raison = raison;
+	}
+	
+
+	class ItereSuiteEntiereArithm implements ItereSuiteEntiere{
+		int courant = premier;
+			
+		int courant(){
+			return courant;
+		}
+		
+		int suivant(){
+			courant += raison 
+			return courant();
+		}
+	}
+
+	ItereSuiteEntiere nouvelIterateur(){
+		return new ItereSuiteEntiere(); 
+	}
+}
+
+/***************
+*Classe anonyme*
+****************/
+
+class SuiteArithm implements SuiteEntiere {
+	int premier, raison;
+	
+	SuiteArithm(int premier, int raison){
+		this.premier = premier;
+		this.raison = raison;
+	}
+	
+
+	ItereSuiteEntiere nouvelIterateur(){
+		return new ItereSuiteEntiere(){
+
+			int courant = premier;
+				
+			int courant(){
+				return courant;
+			}
+			
+			int suivant(){
+				courant += raison 
+				return courant();
+			}
+		}
+	}
+}

@@ -1,0 +1,98 @@
+Exercice 1 :
+
+//Dans Personne
+boolean equals(Object o){
+	if(o instanceof Personne){
+		Personne p = (Personne) o
+		return (this.nom.equals(p.nom) && this.prenom.equals(p.prenom) && this.dateNaissance.equals(p.dateNaissance) && this.adresse.equals(p.adresse));
+	}
+	else{
+		throw new IllegalArgumentException("Vérifier le type de l'objet à comparer");
+		return false;
+	}
+}
+
+//Dans MaDate
+boolean equals(MaDate o){
+	if(o instanceof MaDate)
+		MaDate d = (MaDate) o
+		return(this.annnee == d.annee && this.mois == d.mois && this.jour == d.jour);
+	else{
+		throw new IllegalArgumentException("Vérifier le type de l'objet à comparer");
+		return false;
+	}
+}
+
+Exercice 2 :
+
+//Dans Personne qui implémente Comparable<Personne>
+int compareTo(Personne o){
+	if(this.nom.compareTo(o.nom) == 0){
+		if(this.prenom.compareTo(o.prenom) == 0){
+			if(this.dateNaissance.compareTo(o.dateNaissance) == 0){
+				return this.adresse.compareTo(o.adresse);
+			}
+			else
+				return this.dateNaissance.compareTo(o.dateNaissance);
+		}
+		else
+			return this.prenom.compareTo(o.prenom);
+	}
+	else 
+		return this.nom.compareTo(o.nom);
+}
+
+OU
+
+int compareTo(Personne p){
+	int c = nom.CompareTo(p.nom)
+	if(c != 0)
+		return c;
+	int c = prenom.CompareTo(p.prenom)
+	if(c != 0)
+		return c;
+	int c = date.CompareTo(p.date)
+	if(c != 0)
+		return c;
+	int c = adresse.CompareTo(p.adresse)
+	if(c != 0)
+		return c;
+	
+}
+
+//Dans MaDate qui implémente Comparable<MaDate>
+int compareTo(MaDate o){
+	if(this.annee - o.annee == 0){
+		if(this.mois - o.mois == 0){
+			return this.jour - o.jour;
+		}
+		else 
+			return this.mois - o.mois;
+	}
+	else
+		return this.annee - o.annee;
+}
+
+//Dans personne on créé une classe anonyme
+public comparator<Personne> getComparator(){
+	return new Comparator<Personne>(){
+		int compare(Persone un, Personne de){	// non static pour avoir accès à ma propre implémentation et faire différents comparateurs
+			int c = un.date.compareTo(de.date);
+				if (c!= 0)
+					return 0;
+			int c = un.nom.compareTo(de.date);
+				if (c!= 0)
+					return 0;
+			int c = un.prenom.compareTo(de.date);
+				if (c!= 0)
+					return 0;
+			int c = un.adresse.compareTo(de.date);
+				if (c!= 0)
+					return 0;
+			
+		}
+		boolean equals(Object o){
+			return o == this;
+		}
+	}
+}

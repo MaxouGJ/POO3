@@ -1,0 +1,114 @@
+Exercice 1 :
+
+public Universite(int nbEtu, int nbEtuS, int nbEtuI, intEtuM){
+	if(nbEtu < 0 || nbEtuS < 0 || nbEtuI < 0 || nbEtuM < 0)
+		throw new IllegalArgumentException("Le nombre d'étudiants doit être positif.");
+	else if (nbEtu < nbEtuS || nbEtuS < nbEtuI + nbEtuM)
+		throw new IllegalArgumentException("Les nombres d'étudiants ne sont pas cohérents");
+	else{
+		this.nbEtu = nbEtu;
+		this.nbEtuS = nbEtuS;
+		this.nbEtuI = nbEtuI;
+		this.nbEtuM = nbEtuM;
+	}
+}
+
+public void descriptif(){
+	try{	//appel à la méthode
+		double a = (double) nbEtuI / nbEtuS;
+		double b = (double) nbEtuM / nbEtuS;
+		System.out.println("Nombre d'étudiants : "+nbEtu+"Nombre d'étudiants scientifiques : "+nbEtuS+"\nbEtu Etudiants en informatique : "+nbEtuI/nbEtuS*100+"\n Etudiants en maths : "+nbEtuM/nbEtuS*100);
+	}
+	catch ArithmeticException{	//comportement en cas d'exception
+		System.out.println("Nombre d'étudiants : "+nbEtu);
+	}
+	finally{
+		//Exécuté à la sortie du bloc try forcément
+	}
+	
+}
+
+Exercice 2 :
+
+public void estMembreUniversite throws MembreNonTrouveException(String nom, String prenom){
+	
+	boolean trouve = false;
+	for(int i=0; i<etu.length; i++){
+		if(etu[i].nom.equals(nom) && etu[i].prenom/equals(prenom))
+			trouve = true;
+	}
+	if(!trouve){
+		for(int i=0; i<prof.length; i++){
+			if(prof[i].nom.equals(nom) && prof[i].prenom/equals(prenom))
+				trouve = true;
+		}
+	}
+	if(!trouve)
+		throw new MembreNonTrouveException();
+	else
+		System.out.println(prenom+" "+nom);
+}
+
+class MembreNonTrouveException{
+	MembreNonTrouveException(){
+		System.out.println("La personne n'a pas été trouvée");
+	}
+	MembreNonTrouveException(String s){
+		System.out.println(s);
+	}
+}
+
+class EtudiantNonTrouveException extends MembreNonTrouveException{
+	EtudiantNonTrouveException(){
+		super();
+	}
+	EtudiantNonTrouveException(String s){
+		super(s);
+	}
+}
+
+class ProfesseurNonTrouveException extends MembreNonTrouveException{
+	ProfesseurNonTrouveException(){
+		super();
+	}
+	ProfesseurNonTrouveException(String s){
+		super(s);
+	}
+}
+
+Exercice 3 :
+
+public Menu(String[] entrees, String[] plats, String[] dessets){
+	if(entrees.length < 2 || entrees.length > 9 || plats.length < 2 || plats.length > 9 || desserts.length < 2 || desserts.length > 9)
+		new NEstPasBon();
+	else {
+		this.entrees = entrees;
+		this.plats = plats;
+		this.desserts = desserts;
+	}
+}
+
+class NEstPasBon{
+	NEstPasBon(){
+		System.out.println("Menu mal proportionné.")
+	}
+}
+
+void choixMenu trows MauvaiseSaisieException(){
+	Scanner sc = new Scanner(System.in);
+	for(int i=0; i<entrees.length; i++)
+		System.out.println(entrees[i]);
+	int choix = sc.nextInt();
+	
+	for(int i=0; i<plats.length; i++)
+		System.out.println(plats[i]);
+		
+	for(int i=0; i<desserts.length; i++)
+		System.out.println(desserts[i]);
+}
+
+class MauvaiseSaisieException{
+	MauvaiseSaisieException(){
+		System.out.println("Mauvaise saisie.");
+	}
+}

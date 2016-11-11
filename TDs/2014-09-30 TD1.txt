@@ -1,0 +1,169 @@
+Exercice 1 :
+
+public String toString(){
+	return "("+this.x+" "+this.y+")"
+}
+
+Exercice 3 :
+
+1/
+public class Personne {
+	private String nom ;
+	private String prenom;
+	public int age;
+	private int monnaie;
+	
+	public Personne (String nom, String prenom, int age, int monnaie){
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		if(montant > 0)
+			this.monnaie = monnaie;
+		else 
+			this.monnaie = 0;
+	}
+}
+
+2/
+/*
+	p1 paye p2
+*/
+public static boolean donne(Personne p1, Personne p2, int montant){
+	if (montant > p1.monnaie || montant < 0)
+		return false;
+	else 
+		p2.monnaie += montant;
+	return true;
+}
+
+/*
+	this paie p
+*/
+public static boolean donne(Personne p, int montant){
+	if (montant > this.monnaie || montant < 0)
+		return false;
+	else 
+		p.monnaie += montant;
+	return true;
+}
+
+Exercice 4 : 
+
+public class Compte{
+
+	private int solde;
+	private Personne titulaire;
+	private static nbCompte = 1;
+	private int numero;
+	
+	private Compte(int solde, Personne titulaire){
+		if(solde > 0)
+			this solde = solde;
+		else 
+			solde = 0;
+		this titulaire = titulaire;
+		this.numero = nbCompte;
+		nbCompte++;
+	}
+	
+	public int getSolde(){
+		return solde;
+	}
+	
+	private void credite (int montant){
+		if(montant > 0)
+			solde += montant;
+	}
+	
+	private void debite (int montant){
+		if(montant > 0)
+			solde -= montant;
+	}
+	
+	public boolean retrait(int montant){
+		if (montant > solde || montant < 0)
+			return false;
+		else
+			this.debite(montant);
+		return true;
+	}
+	
+	public boolean depot(int montant){
+		this.credite(montant);
+		retrun true;
+	}
+	
+}
+
+Exercice 5 :
+
+public class Personne {
+	private String nom ;
+	private String prenom;
+	public int age;
+	private Compte[] comptes;
+	
+	public Personne (String nom, String prenom, int age, int n){
+		this.nom = nom;
+		this.prenom = prenom;
+		this.age = age;
+		for(int i =  0; i < n ; i++){
+			comptes[i] = new Compte(0, this);
+		}
+	}
+	
+	public boolean retrait(int montant){
+		int somme = 0;
+		for(int i=0; i < this.comptes.length; i++){
+			somme += comptes[i].getSolde();
+		}
+		if(somme < montant || montant < 0)
+			return false;
+			
+		while(montant > 0){
+			for(int i=0; i < this.comptes.length; i++){
+				if(montant > comptes[i].getSolde()){
+					montant -= comptes[i].getSolde(); 
+					comptes[i].retrait(comptes[i].getSolde(););
+				}
+				else {
+					comptes[i].retrait(montant);
+					montant = 0;
+				}
+			}
+		}
+		return true;
+	}
+}
+
+Exercice 6 : 
+
+public class Entree{
+	
+	public Personne p;
+	public String login;
+	private String mdp;
+	private int tests;
+	
+	private Entree(Personne p, String login, String mdp){
+		this.p = p;
+		this.login = login;
+		this.mdp = mdp;
+		this.tests = 0;
+	}
+	
+	public boolean authorise(String x){
+		if(!this.mdp.equals(x)){
+			this.tests++;
+		else 
+			this.tests = 0;
+		return this.mdp.equals(x);
+	}
+	
+	public boolean changerMdp(String x, String y){
+		if(this.mdp.equals(x))
+			this.mdp = y;
+		return this.mdp.equals(x);
+	}
+	
+}

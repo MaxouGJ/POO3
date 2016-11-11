@@ -1,0 +1,10 @@
+Exercice 1 : 
+
+static int sommeSalaire(Personne[] p){
+	int r = 0 ;
+	for(int i = 0 ; i < p.length ; i++){
+		if(p[i] instanceof Travailleur || EtudiantTravailleur)
+			r += p[i].salaire;
+	}
+	return r;
+}

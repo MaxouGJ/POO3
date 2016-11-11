@@ -1,0 +1,71 @@
+class Voiture {
+	private String marque;
+	private String couleur;
+	public boolean gare;
+
+	public Voiture(String marque, String couleur){
+		this.marque = marque;
+		this.couleur = couleur;
+		this.gare = false;
+	}
+	
+	public boolean entreParking(Parking p){
+		if(this.gare)
+			return false;
+		else {
+			this.gare = true;
+			return p.entreParking(this);
+		}
+	}
+	
+	public boolean demandePlace(Parking p, int place){
+		return p.demandePlace(this, place);
+	}
+}
+
+
+class Parking {
+	private int nbPlaces;
+	private final int nbPlacesTotal
+	public Voiture[]voitures;
+	
+	public Parking(int nbPlacesTotal){
+		this.nbPlacesTotal = nbPlacesTotal;
+		this.nbPlaces = nbPlacesTotal;
+		this.voitures = new Voiture[nbPlacesTotal];
+	}
+	
+	public String toString(){
+		String v = "\n";
+		for(i = 0; i < voitures.length; i++){
+			if(voitures[i] != null){
+				v += voitures[i].marque;
+		}
+		return "Nombre total de places : "+nbPlacesTotal+"\n Nombre de places disponibles : "+nbPlaces+"\n Liste des voitures garées : "+v+"\n Pourcentage de remplissage : "+nbPlaces/nbPlacesTotal;
+	}
+	
+	private boolean entreParking(Voiture v){
+		if(nbPlaces = 0)
+			return false;
+		else {
+			for(int i=0; i<nbPlacesTotal; i++){
+				if(voitures[i] != null)
+					voitures[i] = v;
+					return true;
+			}
+		}
+	}
+	
+	private boolean demandePlace(Voiture v, int place){
+		if(nbPlaces = 0)
+			return false;
+		else{
+			if(voitures[place] == null){
+				voitures[place] = v;
+				return true;
+			}
+			else
+				return false;
+		}
+	}
+}

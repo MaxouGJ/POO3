@@ -1,0 +1,76 @@
+Exercice 3 : 
+
+// Dans la classe Animal
+public boolean carnivore(){
+	return false;
+}
+
+// Dans la classe du carnivore conserné
+public boolean carnivore(){	
+	return true; 
+}
+
+// Dans la classe Animal
+public boolean nourrirAvecViande(boolean viande){
+	return !(this.carnivore() && !viande);
+}
+
+
+Exercice 4 :
+
+// Dans la classe 
+public static int comptePantheresNoires(int[] zoo){
+	int n = 0
+	for(int i = 0; i < zoo.length; i++){
+		if(zoo[i] instanceof PanthereNoire)
+			n++;
+	}
+	return n;
+}
+
+Exercice 5 : 
+
+// Dans la classe Animal
+
+public boolean estEnfant(){
+	return (age < ageAdulte);
+}
+
+public boolean estAdulte(){
+	return (age < ageAdulte && !this.estMort());
+}
+
+public boolean estMort(){
+	return (age > ageMort);
+}
+
+public void anniversaire(){
+	age++;
+}
+
+public static void anniversaires(Animal[] zoo){
+	for(int i=0; i < zoo.length; i++){
+		zoo[i].age++;
+		if(zoo[i].estMort()){
+			zoo[i] = null;
+		}	
+	}
+	for(int i=0; i < zoo.length-1; i++){
+		if(zoo[i] == null)
+			zoo[i] = zoo[i+1];
+	}
+}
+
+Exercice 6 : 
+
+// Dans la classe Animal
+public Animal reproduction(Animal partenaire){
+	if(this instanceof partenaire && !this.sexe.equals(partenaire.sexe && this.estAdulte() && partenaire.estAdulte())){
+		if(Math.random() > 0.5)
+			String sexe = "male";
+		else
+			String sexe = "femelle";
+		return new Animal(sexe);
+	}
+	else return null;
+}
